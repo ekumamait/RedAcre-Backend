@@ -1,12 +1,12 @@
 import express from "express";
-const { getStores, addStore } = require('../controllers');
+import { getLocation, addLocation } from '../controllers';
 
 // defining middleware routes
 const router = express.Router();
 
 router
   .route('/')
-  .get(getStores)
-  .post(addStore);
+  .get(getLocation)
+  .post(addLocation);
 
 module.exports = router;

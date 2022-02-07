@@ -1,47 +1,28 @@
-const mongoose = require('mongoose');
-const geocoder = require('../utils/geocoder');
+import Map from '../models';
 
-const StoreSchema = new mongoose.Schema({
-  storeId: {
-    type: String,
-    required: [true, 'Please add a store ID'],
-    unique: true,
-    trim: true,
-    maxlength: [10, 'Store ID must be less than 10 chars']
-  },
-  address: {
-    type: String,
-    required: [true, 'Please add an address']
-  },
-  location: {
-    type: {
-      type: String,
-      enum: ['Point']
-    },
-    coordinates: {
-      type: [Number],
-      index: '2dsphere'
-    },
-    formattedAddress: String
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
+// @desc  Get all location coordinates
+// @route GET /api/v1/location
+// @access Public
+exports.getLocation = async (req, res, next) => {
+  try {
+    const location = await Map.find();
+    return res.status(200).json({
+      success: true,
+      count: location.length,
+      data: location
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Server error' });
   }
-});
+};
 
-// Geocode & create location
-StoreSchema.pre('save', async function(next) {
-  const loc = await geocoder.geocode(this.address);
-  this.location = {
-    type: 'Point',
-    coordinates: [loc[0].longitude, loc[0].latitude],
-    formattedAddress: loc[0].formattedAddress
-  };
-
-  // Do not save address
-  this.address = undefined;
-  next();
-});
-
-module.exports = mongoose.model('Store', StoreSchema);
+// @desc  Add location files
+// @access Invisible
+exports.addLocation = async (lng, lat) => {
+  try {
+    const map = await Map.create({lng, lat});
+    console.log('<<<>>>',map);
+  } catch (err) {
+  }
+};
