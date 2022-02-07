@@ -18,6 +18,10 @@
     "axios": "^0.25.0",
     "cors": "^2.8.5",
     "express": "^4.17.2",
-    "nodemon": "^2.0.15"
+    "geojson-stream": "^0.1.0",
+    "nodemon": "^2.0.15",
+    "dotenv": "^8.2.0",
+    "mongoose": "^5.8.3",
+    "node-geocoder": "^3.25.0"
   }
 }
