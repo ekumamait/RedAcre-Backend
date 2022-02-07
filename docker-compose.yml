@@ -1,0 +1,17 @@
+version: "3"
+services:
+  login-app:
+      container_name: redacre-backend
+      image: latest123/redacre-backend
+      restart: always
+      build: .
+      ports:
+        - "7500:7500"
+      links:
+        - mongo
+  mongo:
+      container_name: mongo
+      image: mongo
+      volumes:
+        - ./data:/data/db
+      ports:
