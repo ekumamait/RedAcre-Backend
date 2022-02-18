@@ -63,6 +63,6 @@ This is an application that loads coordinates from a GeoJSON file to a mongoDB a
 
 Here is the link to the Demo:
 
-- [ ]
+- [ ] not yet available
 
 ------------
