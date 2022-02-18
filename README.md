@@ -53,15 +53,15 @@ This is an application that loads coordinates from a GeoJSON file to a mongoDB a
 
 ###### :microscope: TESTS;
 
-- [x] Tests for controllers
-- [x] Tests for routes
-- [x] Tests for models
+- [ ] Tests for controllers
+- [ ] Tests for routes
+- [ ] Tests for models
 
 ------------
 
 ###### Project Demo;
 
 Here is the link to the Demo:
-- [x]
+- [ ]
 
 ------------
