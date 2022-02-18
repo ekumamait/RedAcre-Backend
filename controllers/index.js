@@ -5,12 +5,10 @@ import Map from '../models';
 // @access Public
 exports.getLocation = async (req, res, next) => {
   try {
-    const location = await Map.find();
-    return res.status(200).json({
-      success: true,
-      count: location.length,
-      data: location
-    });
+    const location = await Map.find()
+      .cursor({transform: JSON.stringify})
+      .pipe(res.type('json'))
+    return location
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Server error' });
@@ -22,7 +20,7 @@ exports.getLocation = async (req, res, next) => {
 exports.addLocation = async (lng, lat) => {
   try {
     const map = await Map.create({lng, lat});
-    console.log('<<<>>>',map);
+    // console.log('<<<>>>',map);
   } catch (err) {
   }
 };
